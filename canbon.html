@@ -1,0 +1,205 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rectangle1{
+            height: 200px;
+            width: 120px;
+            background-color: bisque;
+        }
+        .rectangle2{
+            height: 200px;
+            width: 120px;
+            background-color: bisque;
+        }
+        .rectangle3{
+            height: 200px;
+            width: 120px;
+            background-color: bisque;
+        }
+        .container{
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            /* gap: 10px;  */
+            /* display: inline-grid;
+            grid-template-rows: 100px 100px 100px;
+            grid-template-columns: 150px 150px 150px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="rectangle1"></div>
+        <div class="rectangle2"></div>
+        <div class="rectangle3"></div>
+    </div>
+    <input type="text" draggable="true" onchange="myFunction()">
+    <script>
+        let to =document.getElementsByClassName('rectangle1')[0]
+        let pen=document.getElementsByClassName('rectangle2')[0]
+        let fin=document.getElementsByClassName('rectangle3')[0]
+     to.addEventListener('dragover',function(e){
+        e.preventDefault()
+     })
+     to.addEventListener('drop',function(e){
+        to.appendChild(ab)
+     })
+     pen.addEventListener('dragover',function(e){
+        e.preventDefault()
+     })
+     pen.addEventListener('drop',function(e){
+        pen.appendChild(ab)
+     })
+    fin.addEventListener('dragover',function(e){
+        e.preventDefault()
+     })
+    fin.addEventListener('drop',function(e){
+        fin.appendChild(ab)
+     })
+
+    let ab=''
+    function myFunction(){
+    let x = document.getElementsByTagName('input')[0].value 
+    let ele=document.createElement('div')
+    ele.innerHTML=x
+    to.appendChild(ele)
+    ele.setAttribute('draggable','true')
+    ele.addEventListener('dragstart',function(e){
+    ab=e.target
+    })
+    document.getElementsByTagName('input')[0].value =" "
+    }
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
+        }
+        .rect1{
+            height: 200px;
+            width: 150px;
+            background-color: aquamarine;
+            overflow: scroll;
+            text-align: center;
+        }
+        .rect2{
+            height: 200px;
+            width: 150px;
+            background-color: aquamarine;
+            overflow: scroll;
+            text-align: center;
+        }
+        .rect3{
+            height: 200px;
+            width: 150px;
+            background-color: aquamarine;
+            overflow: scroll;
+            text-align: center; 
+        }
+        .container{
+            display: flex;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+        .input{
+            margin-top: 25px;
+            margin-left: 200px;
+        }
+        input{
+            width: 100px;
+            height: 15px;
+            padding: 3px 3px 3px 3px;
+        }
+        .green{
+            background-color: green;
+            padding: 4px;
+            border-radius: 10px;
+            color: white;
+        }
+        .yellow{
+            background-color: yellow;
+            padding: 4px;
+            border-radius: 10px;
+            color: white;
+        }
+        .red{
+            background-color:red;
+            padding: 4px;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="rect1">Task</div>
+    <div class="rect2">InProgress</div>
+    <div class="rect3">Completed</div>
+</div>
+<div class="input">
+    <label for="input">Enter the task</label>
+    <input type="text" draggable="true" onchange="myFunction()">
+</div>
+
+<script>
+    let task = document.getElementsByClassName('rect1')[0]
+    let inProgress = document.getElementsByClassName('rect2')[0]
+    let completed = document.getElementsByClassName('rect3')[0]
+    task.addEventListener('dragover',function(e){
+        e.preventDefault()
+    })
+    task.addEventListener('drop',function(e){
+        tasks.style.backgroundColor="red"
+        tasks.querySelector('#icon').classList.value='fa-solid fa-list-check'
+        task.appendChild(tasks)
+        
+    })
+    inProgress.addEventListener('dragover',function(e){
+        e.preventDefault()
+    })
+    inProgress.addEventListener('drop',function(e){
+        tasks.style.backgroundColor="#fca903"
+       
+    tasks.querySelector('#icon').classList.value="fa-solid fa-bars-progress"
+       inProgress.appendChild(tasks)
+       
+    })
+    completed.addEventListener('dragover',function(e){
+        e.preventDefault()
+    })
+    completed.addEventListener('drop',function(e){
+        tasks.style.backgroundColor="green"
+        
+        tasks.querySelector('#icon').classList.value="fa-solid fa-check-to-slot"
+        completed.appendChild(tasks)
+    })
+
+    let tasks = ""
+    function myFunction(){
+    let inp = document.getElementsByTagName('input')[0].value
+    let inpVal = document.createElement('div')
+    inpVal.innerHTML = `<i class="fa-solid fa-list-check" id="icon"></i>${inp}`
+    inpVal.classList='red'
+  
+    task.appendChild(inpVal)
+    inpVal.setAttribute('draggable','true')
+    inpVal.addEventListener('dragstart',function(e){
+       tasks = e.target 
+    })
+    document.getElementsByClassName('input')[0].value = ''
+    }
+</script>
+</body>
+</html>
